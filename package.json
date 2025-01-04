@@ -1,0 +1,19 @@
+{
+  "name": "mike",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "localdev:start": "docker-compose up --build",
+    "localdev:end": "docker-compose down",
+    "db:migrate": "knex migrate:latest --env development",
+    "db:seed": "knex seed:run --env development"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "knex": "^3.1.0",
+    "nodemon": "^3.1.9",
+    "pg": "^8.13.1"
+  }
+}

@@ -1,0 +1,24 @@
+services:
+  db:
+    image: postgres:15
+    container_name: mike-db
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: mike-docker
+    ports:
+      - 5431:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  app:
+    build: .
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgres://admin:admin@db:5432/mike-docker
+    ports:
+      - "3000:3000"
+
+volumes:
+  postgres_data:
