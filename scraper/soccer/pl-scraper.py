@@ -7,7 +7,7 @@ import time
 
 # Instantiate a Chrome options object
 options = webdriver.ChromeOptions()
-options.add_argument("--headless=new")  # Run in headless mode, can remove if you need to see the browser
+options.add_argument("--headless=new")
 
 # Initialize an instance of the Chrome driver in headless mode
 driver = webdriver.Chrome(options=options)
