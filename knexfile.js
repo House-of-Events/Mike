@@ -1,17 +1,19 @@
+// use environment variables to connect to the database
+require('dotenv').config();
+
 module.exports = {
   development: {
-    client: "pg", // Use pg client for PostgreSQL
+    client: 'postgresql',
     connection: {
-      host: "db", // The service name for the PostgreSQL container in Docker Compose
-      user: "admin",
-      password: "admin",
-      database: "mike-docker",
+      host: process.env.DB_HOST,
+      database: process.env.DB_NAME,
+      user: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+      port: process.env.DB_PORT,
+      ssl: { rejectUnauthorized: false }
     },
     migrations: {
-      directory: "./db/migrations", // Path to migrations
-    },
-    seeds: {
-      directory: "./db/seeds", // Path to seeds
-    },
-  },
+      directory: './db/migrations'
+    }
+  }
 };

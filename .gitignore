@@ -1,1 +1,20 @@
+# Node.js dependencies
 node_modules/
+
+# Build output directory (e.g., compiled JS, assets)
+dist/
+
+# Environment variables (contains sensitive data)
+.env
+
+# Terraform state files
+terraform/*.tfstate
+terraform/*.tfstate.*
+terraform/.terraform/
+terraform/*.tfvars
+terraform/terraform.tfvars
+terraform/.terraform.lock.hcl
+
+# Additional Terraform files to ignore
+terraform/*.tfplan
+terraform/crash.log
