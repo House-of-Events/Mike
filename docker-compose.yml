@@ -10,15 +10,30 @@ services:
       - 5431:5432
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U admin -d mike-docker']
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+     - my-network
 
   app:
     build: .
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     environment:
       DATABASE_URL: postgres://admin:admin@db:5432/mike-docker
     ports:
-      - "3000:3000"
+      - '3000:3000'
+    restart: unless-stopped
+    networks:
+      - my-network
 
 volumes:
   postgres_data:
+
+networks:
+  my-network:
+    name: my-network

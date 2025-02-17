@@ -5,8 +5,13 @@
   "scripts": {
     "localdev:start": "docker-compose up --build",
     "localdev:end": "docker-compose down",
-    "db:migrate": "knex migrate:latest --env development",
-    "db:seed": "knex seed:run --env development"
+    "db:migrate": "knex migrate:latest",
+    "db:migrate:dev": "knex migrate:latest --env development",
+    "db:migrate:prod": "knex migrate:latest --env production",
+    "db:seed": "knex seed:run",
+    "db:seed:dev": "knex seed:run --env development",
+    "db:seed:prod": "knex seed:run --env production",
+    "db:rollback": "knex migrate:rollback"
   },
   "author": "",
   "license": "ISC",

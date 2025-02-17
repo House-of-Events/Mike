@@ -102,8 +102,8 @@ variable "db_password" {
 }
 
 // create aws rdb instance
-resource "aws_db_instance" "sports" {
-    identifier = "soccer-pl-db"
+resource "aws_db_instance" "house_of_events" {
+    identifier = "house-of-events"
     allocated_storage = 10
     storage_type = "gp2"
     engine = "postgres"
