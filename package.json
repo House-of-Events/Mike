@@ -2,6 +2,7 @@
   "name": "mike",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "localdev:start": "docker-compose up --build",
     "localdev:end": "docker-compose down",

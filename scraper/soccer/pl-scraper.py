@@ -15,12 +15,18 @@ load_dotenv()
 
 # Connection wtih database
 conn = psycopg2.connect(
-    database=os.getenv("DB_NAME"),
-    user=os.getenv("DB_USER"),
-    password=os.getenv("DB_PASSWORD"),
-    host=os.getenv("DB_HOST"),
-    port=os.getenv("DB_PORT")
+    # database=os.getenv("DB_NAME"),
+    # user=os.getenv("DB_USER"),
+    # password=os.getenv("DB_PASSWORD"),
+    # host=os.getenv("DB_HOST"),
+    # port=os.getenv("DB_PORT")
+    database="mike-docker",
+    user="admin",
+    password="admin",
+    host="localhost",
+    port="5432"
 )
+
 
 # Create a cursor object using the cursor() method
 cursor = conn.cursor()

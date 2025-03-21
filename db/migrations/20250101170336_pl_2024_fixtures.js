@@ -2,7 +2,7 @@
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
  */
-exports.up = function (knex) {
+export async function up(knex) {
   return knex.schema.createTable('soccer_2024_pl_fixtures', (table) => {
     table
       .string('id')
@@ -31,6 +31,6 @@ exports.up = function (knex) {
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
  */
-exports.down = function (knex) {
-  return knex.schema.dropTable('soccer_2024_pl_fixtures');
+export async function down(knex) {
+return knex.schema.dropTable('soccer_2024_pl_fixtures');
 };
