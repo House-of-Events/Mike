@@ -21,43 +21,14 @@ jobs:
     - name: Install dependencies
       run: npm ci --legacy-peer-deps
       
-    # Option 1: Use AWS Access Keys (recommended for CI/CD)
-    - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v4
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: ${{ secrets.AWS_REGION || 'us-west-2' }}
-        
-    # Option 2: Use AWS Profile (alternative approach)
-    # - name: Configure AWS credentials with profile
-    #   uses: aws-actions/configure-aws-credentials@v4
-    #   with:
-    #     role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
-    #     aws-region: ${{ secrets.AWS_REGION || 'us-west-2' }}
-        
-    - name: Install Chamber
-      run: |
-        curl -L https://github.com/segmentio/chamber/releases/download/v2.12.0/chamber_2.12.0_linux_amd64.tar.gz | tar -xz
-        sudo mv chamber /usr/local/bin/chamber
-        
-    - name: Get database credentials from Chamber
-      id: chamber-secrets
-      run: |
-        echo "db_host=$(chamber read app-aws db_host -q)" >> $GITHUB_OUTPUT
-        echo "db_port=$(chamber read app-aws db_port -q)" >> $GITHUB_OUTPUT
-        echo "db_name=$(chamber read app-aws db_name -q)" >> $GITHUB_OUTPUT
-        echo "db_username=$(chamber read app-aws db_username -q)" >> $GITHUB_OUTPUT
-        echo "db_password=$(chamber read app-aws db_password -q)" >> $GITHUB_OUTPUT
-        
     - name: Run database migrations
       env:
         NODE_ENV: production
-        DB_HOST: ${{ steps.chamber-secrets.outputs.db_host }}
-        DB_PORT: ${{ steps.chamber-secrets.outputs.db_port }}
-        DB_NAME: ${{ steps.chamber-secrets.outputs.db_name }}
-        DB_USER: ${{ steps.chamber-secrets.outputs.db_username }}
-        DB_PASSWORD: ${{ steps.chamber-secrets.outputs.db_password }}
+        DB_HOST: ${{ secrets.DB_HOST }}
+        DB_PORT: ${{ secrets.DB_PORT }}
+        DB_NAME: ${{ secrets.DB_NAME }}
+        DB_USER: ${{ secrets.DB_USER }}
+        DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
       run: npm run db:migrate:prod
       
     - name: Migration completed
