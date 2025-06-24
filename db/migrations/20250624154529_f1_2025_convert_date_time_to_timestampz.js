@@ -1,4 +1,3 @@
-
 export async function up(knex) {
     // 1. Add a new column with the correct type
     await knex.schema.alterTable('f1_2025_fixtures', (table) => {
@@ -35,7 +34,7 @@ export async function up(knex) {
     // 2. Copy values back as ISO string
     await knex.raw(`
       UPDATE f1_2025_fixtures
-      SET date_time_old = to_char(date_time AT TIME ZONE 'UTC', 'YYYY-MM-DD\"T\"HH24:MI:SS\"Z\"')
+      SET date_time_old = to_char(date_time AT TIME ZONE 'UTC', 'YYYY-MM-DD"T"HH24:MI:SS"Z"')
     `);
   
     // 3. Drop the new column
