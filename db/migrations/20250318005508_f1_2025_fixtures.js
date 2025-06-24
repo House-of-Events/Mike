@@ -20,10 +20,17 @@ export async function up(knex) {
         table.string('race_type');
         table.string('date');
         table.string('time');
-        table.dateTime('date_time');
-        table.dateTime('date_created').defaultTo(knex.fn.now());
-        table.boolean('informed').defaultTo(false);
+        table.string('date_time');
+        table.string('status').checkIn(['pending', 'completed', 'delayed', 'cancelled']);
         table.string('notification_sent_at');
+        table.boolean('processed').defaultTo(false);
+        table.timestamp('date_processed').nullable();
+
+        // Timestamp fields
+        table.timestamp('date_created').defaultTo(knex.fn.now());
+        table.timestamp('date_updated').defaultTo(knex.fn.now());
+        table.timestamp('date_deleted').nullable();
+        
     });
   
 };
