@@ -9,6 +9,7 @@
     "db:migrate": "knex migrate:latest",
     "db:migrate:dev": "knex migrate:latest --env development",
     "db:migrate:prod": "knex migrate:latest --env production",
+    "db:migrate:make": "knex migrate:make",
     "db:seed": "knex seed:run",
     "db:seed:dev": "knex seed:run --env development",
     "db:seed:prod": "knex seed:run --env production",
