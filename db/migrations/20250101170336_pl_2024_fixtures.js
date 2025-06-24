@@ -39,5 +39,5 @@ export async function up(knex) {
  * @returns { Promise<void> }
  */
 export async function down(knex) {
-return knex.schema.dropTable('soccer_2024_pl_fixtures');
+return knex.schema.dropTable('soccer_2025_fixtures');
 };
