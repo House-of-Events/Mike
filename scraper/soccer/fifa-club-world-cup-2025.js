@@ -131,8 +131,8 @@ class FIFAWorldCup2025Scraper {
 
       const query = `
         INSERT INTO fixtures 
-        (match_id, sport_type, fixture_data, status) 
-        VALUES ($1, $2, $3, $4)
+        (match_id, sport_type, fixture_data, status, date_time) 
+        VALUES ($1, $2, $3, $4, $5)
         RETURNING id
       `;
 
@@ -140,7 +140,8 @@ class FIFAWorldCup2025Scraper {
         fixture.matchId,
         fixture.sportType,
         JSON.stringify(fixture.fixtureData),
-        fixture.status
+        fixture.status,
+        fixture.dateTime
       ]);
 
       if (result.rows.length > 0) {
@@ -202,7 +203,8 @@ class FIFAWorldCup2025Scraper {
         matchId,
         sportType: 'soccer',
         fixtureData: fixtureDataJson,
-        status
+        status,
+        dateTime: dateTime.datetime
       };
     } catch (error) {
       console.error('Error processing fixture:', error.message);
