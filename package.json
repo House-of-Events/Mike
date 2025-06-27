@@ -13,16 +13,23 @@
     "db:seed": "knex seed:run",
     "db:seed:local": "knex seed:run --env local",
     "db:seed:prod": "knex seed:run --env production",
-    "db:rollback": "knex migrate:rollback"
+    "db:rollback": "knex migrate:rollback",
+    "chamber-run-scraper": "chamber exec app-aws -- python3 scraper/soccer/fifa-world-cup-2025.py",
+    "scraper:local": "NODE_ENV=local python3 scraper/soccer/fifa-world-cup-2025.py",
+    "scraper:prod": "chamber exec app-aws -- python3 scraper/soccer/fifa-world-cup-2025.py",
+    "scraper:ci": "CI=true python3 scraper/soccer/fifa-world-cup-2025.py",
+    "scraper:js:local": "NODE_ENV=local node scraper/soccer/fifa-world-cup-2025.js",
+    "scraper:js:prod": "chamber exec app-aws -- node scraper/soccer/fifa-world-cup-2025.js"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "axios": "^1.10.0",
     "bookshelf": "^1.2.0",
     "dotenv": "^16.4.7",
     "knex": "^3.1.0",
     "nodemon": "^3.1.9",
-    "pg": "^8.13.1"
+    "pg": "^8.16.2"
   }
 }
