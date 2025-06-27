@@ -11,8 +11,8 @@ echo "db:5432 - accepting connections"
 echo "Database is ready. Running migrations and seeds..."
 
 # Run migrations and seeds
-yarn run db:migrate:dev
-yarn run db:seed:dev
+yarn run db:migrate:local
+yarn run db:seed:local
 
 # Keep container running
 echo "Starting application..."
